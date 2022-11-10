@@ -1,4 +1,4 @@
-# Hasura with Actions Generator
+# Hasura Actions Generator
 
      _   _    _    ____ _____           _   _                                _        _   _                      _    ____ ___  
     | | | |  / \  / ___|_   _|         | | | | __ _ ___ _   _ _ __ __ _     / \   ___| |_(_) ___  _ __  ___     / \  |  _ \_ _| 
