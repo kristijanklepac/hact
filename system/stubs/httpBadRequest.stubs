@@ -1,0 +1,8 @@
+import { HttpCode, AppErrorArgs } from '../AppError';
+
+const err: AppErrorArgs = {
+  httpCode: HttpCode.BAD_REQUEST,
+  name: 'APP_ERROR_MESSAGE',
+};
+
+export default err;

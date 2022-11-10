@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  api:
+    container_name: hact-api-dev
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src/app:delegated
+      - /usr/src/app/node_modules
+    ports:
+      - 1111:1111
+    command: npm run dev
+    env_file:
+      - .env.development.example
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
+
+
+
+
+

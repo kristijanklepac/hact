@@ -1,0 +1,3 @@
+table:
+  name: examples
+  schema: public

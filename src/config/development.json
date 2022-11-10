@@ -1,0 +1,5 @@
+{
+    "port": "1111",
+    "hasura_graphql_url": "http://graphql-engine-hasura:8080/v1/graphql",
+    "hasura_health_endpoint": "http://localhost:8123/healthz"
+}

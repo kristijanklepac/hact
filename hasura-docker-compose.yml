@@ -1,0 +1,49 @@
+# FOR DEVELOPMENT PURPOSES ONLY
+services:
+
+  postgres-hasura:
+    container_name: hact-dev-postgres
+    image: postgres:12
+    restart: always
+    volumes:
+    - db_data_pg_hasura:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword # good enough for development :)
+  graphql-engine-hasura:
+    container_name: hact-dev-hasura
+    image: hasura/graphql-engine:v2.15.0
+    volumes:
+      - ./hasuraDev/migrations:/hasura-migrations
+      - ./hasuraDev/metadata:/hasura-metadata
+    ports:
+    - "8123:8080"
+    depends_on:
+    - "postgres-hasura"
+    restart: always
+    environment:
+      ## postgres database to store Hasura metadata
+      HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres-hasura:5432/postgres
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres-hasura:5432/postgres
+      HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
+      HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
+      ## enable the console served by server
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false" # set to "false" to disable console
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to run console offline (i.e load console assets from server instead of CDN)
+      # HASURA_GRAPHQL_CONSOLE_ASSETS_DIR: /srv/console-assets
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+volumes:
+  db_data_pg_hasura:
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+{
+    "*.(js|ts)": "eslint --fix --fix-type suggestion --fix-type problem"
+}
